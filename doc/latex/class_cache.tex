@@ -1,0 +1,145 @@
+\hypertarget{class_cache}{}\section{Cache$<$ Key, Value, Hash\+Function, Key\+Equal, Allocator $>$ Class Template Reference}
+\label{class_cache}\index{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$@{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$}}
+
+
+The \mbox{\hyperlink{class_cache}{Cache}} class This templated class consists a \mbox{\hyperlink{class_cache}{Cache}} that functions at an L\+RU manner. The insertion and look up complexity is O(1). An insertion implies the insertion to three data structures\+:  
+
+
+
+
+{\ttfamily \#include $<$cache.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_cache_a7b08c5e504d8421f25c9770fd9767bb9}{Cache}} (int max\+\_\+size=default\+\_\+max\+\_\+size, bool enable\+\_\+logs=default\+\_\+log\+\_\+level)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_cache}{Cache}} Constructor of the L\+RU cache. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_cache_a3aefcab2524308769e78a55e577c27d0}\label{class_cache_a3aefcab2524308769e78a55e577c27d0}} 
+\mbox{\hyperlink{class_cache_a3aefcab2524308769e78a55e577c27d0}{Cache}} (const \mbox{\hyperlink{class_cache}{Cache}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Disable copy constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_cache_ab01de8bf45a4ef5270fbbdc1eb89acc1}\label{class_cache_ab01de8bf45a4ef5270fbbdc1eb89acc1}} 
+\mbox{\hyperlink{class_cache}{Cache}} \& \mbox{\hyperlink{class_cache_ab01de8bf45a4ef5270fbbdc1eb89acc1}{operator=}} (const \mbox{\hyperlink{class_cache}{Cache}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Disable copy assignment operator. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_cache_a6856a2f982670307b356e4d4c8914a33}\label{class_cache_a6856a2f982670307b356e4d4c8914a33}} 
+\mbox{\hyperlink{class_cache_a6856a2f982670307b356e4d4c8914a33}{Cache}} (\mbox{\hyperlink{class_cache}{Cache}} \&\&other)
+\begin{DoxyCompactList}\small\item\em Move constructor. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{class_cache_a79c6990c4265acdd65f8fcafdbeb62bb}{size}} ()
+\begin{DoxyCompactList}\small\item\em size Returns the amount of inserted key-\/value pairs \end{DoxyCompactList}\item 
+std\+::pair$<$ Value, bool $>$ \mbox{\hyperlink{class_cache_a69e99d60b40223afce1b5c1a89a71e05}{find}} (const Key \&key, int sleeptime=0)
+\begin{DoxyCompactList}\small\item\em find Finds the value of corresponding key, if exists. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{class_cache_a8e44a1490dac6dfdaa5dd75dc558b1c2}{insert}} (Key key, Value value, int sleeptime=0)
+\begin{DoxyCompactList}\small\item\em insert Inserts a key-\/value pair in the cache. If max capacity is reached, the oldest key-\/value pair is evicted. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_cache_ae0de6a8741d800b5843581c0d21a09d6}\label{class_cache_ae0de6a8741d800b5843581c0d21a09d6}} 
+void \mbox{\hyperlink{class_cache_ae0de6a8741d800b5843581c0d21a09d6}{print}} (const std\+::function$<$ void(Key k)$>$ \&print\+\_\+key=\mbox{[}$\,$\mbox{]}(Key k)\{std\+::cout$<$$<$ k;\}, const std\+::function$<$ void(Value v)$>$ \&print\+\_\+value=\mbox{[}$\,$\mbox{]}(Value v)\{std\+::cout$<$$<$ v;\})
+\begin{DoxyCompactList}\small\item\em print Prints the contents of the cache (for debbugging purposes) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_cache_af1108b256b507b7d279ba2859354b556}\label{class_cache_af1108b256b507b7d279ba2859354b556}} 
+void {\bfseries swap} (\mbox{\hyperlink{class_cache}{Cache}} \&first, \mbox{\hyperlink{class_cache}{Cache}} \&second)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Key, class Value, class Hash\+Function = std\+::hash$<$\+Key$>$, class Key\+Equal = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator = std\+::allocator$<$std\+::pair$<$const Key, Value$>$$>$$>$\newline
+class Cache$<$ Key, Value, Hash\+Function, Key\+Equal, Allocator $>$}
+
+The \mbox{\hyperlink{class_cache}{Cache}} class This templated class consists a \mbox{\hyperlink{class_cache}{Cache}} that functions at an L\+RU manner. The insertion and look up complexity is O(1). An insertion implies the insertion to three data structures\+: 
+
+
+\begin{DoxyEnumerate}
+\item hashmap from Keys to Values
+\item hashmap from Keys to insertion rounds
+\item hashmap from insertion round to Keys. Key features\+:
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Keys and Values can be of arbitrary type.
+\item User can provide a maximum capacity.
+\item Multithreaded functionality is provided. 
+\end{DoxyEnumerate}
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_cache_a7b08c5e504d8421f25c9770fd9767bb9}\label{class_cache_a7b08c5e504d8421f25c9770fd9767bb9}} 
+\index{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$@{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$}!Cache@{Cache}}
+\index{Cache@{Cache}!Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$@{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$}}
+\subsubsection{\texorpdfstring{Cache()}{Cache()}}
+{\footnotesize\ttfamily template$<$class Key , class Value , class Hash\+Function  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$const Key, Value$>$$>$$>$ \\
+\mbox{\hyperlink{class_cache}{Cache}}$<$ Key, Value, Hash\+Function, Key\+Equal, Allocator $>$\+::\mbox{\hyperlink{class_cache}{Cache}} (\begin{DoxyParamCaption}\item[{int}]{max\+\_\+size = {\ttfamily default\+\_\+max\+\_\+size},  }\item[{bool}]{enable\+\_\+logs = {\ttfamily default\+\_\+log\+\_\+level} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{class_cache}{Cache}} Constructor of the L\+RU cache. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+\_\+size} & The maximum capacity of the cache \\
+\hline
+{\em enable\+\_\+logs} & Enables/disables verbosity \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_cache_a69e99d60b40223afce1b5c1a89a71e05}\label{class_cache_a69e99d60b40223afce1b5c1a89a71e05}} 
+\index{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$@{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$}!find@{find}}
+\index{find@{find}!Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$@{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}}
+{\footnotesize\ttfamily template$<$class Key , class Value , class Hash\+Function  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$const Key, Value$>$$>$$>$ \\
+std\+::pair$<$Value, bool$>$ \mbox{\hyperlink{class_cache}{Cache}}$<$ Key, Value, Hash\+Function, Key\+Equal, Allocator $>$\+::find (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{int}]{sleeptime = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+find Finds the value of corresponding key, if exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The Key \\
+\hline
+{\em sleeptime} & Optiion to cause delays (for testing multithreading functionalities) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns an std\+::pair$<$\+Value, bool$>$. If the Key exists, the corresponding value is returned and the bool is set to true If the Key does not exist, a default-\/constructed Value object is returned and bool is set to false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_cache_a8e44a1490dac6dfdaa5dd75dc558b1c2}\label{class_cache_a8e44a1490dac6dfdaa5dd75dc558b1c2}} 
+\index{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$@{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$}!insert@{insert}}
+\index{insert@{insert}!Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$@{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$}}
+\subsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$class Key , class Value , class Hash\+Function  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$const Key, Value$>$$>$$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_cache}{Cache}}$<$ Key, Value, Hash\+Function, Key\+Equal, Allocator $>$\+::insert (\begin{DoxyParamCaption}\item[{Key}]{key,  }\item[{Value}]{value,  }\item[{int}]{sleeptime = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+insert Inserts a key-\/value pair in the cache. If max capacity is reached, the oldest key-\/value pair is evicted. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The Key \\
+\hline
+{\em value} & The Value \\
+\hline
+{\em sleeptime} & Optiion to cause delays (for testing multithreading functionalities) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if Key already existed, 1 if Key is newly added 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_cache_a79c6990c4265acdd65f8fcafdbeb62bb}\label{class_cache_a79c6990c4265acdd65f8fcafdbeb62bb}} 
+\index{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$@{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$}!size@{size}}
+\index{size@{size}!Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$@{Cache$<$ Key, Value, HashFunction, KeyEqual, Allocator $>$}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$class Key , class Value , class Hash\+Function  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$const Key, Value$>$$>$$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_cache}{Cache}}$<$ Key, Value, Hash\+Function, Key\+Equal, Allocator $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+size Returns the amount of inserted key-\/value pairs 
+
+\begin{DoxyReturn}{Returns}
+The amount of inserted key-\/value pairs 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/cache.\+hpp\end{DoxyCompactItemize}

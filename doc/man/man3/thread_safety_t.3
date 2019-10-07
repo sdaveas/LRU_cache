@@ -1,0 +1,111 @@
+.TH "thread_safety_t" 3 "Sun Oct 6 2019" "xm_assessment" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+thread_safety_t
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBthread_safety_t\fP ()"
+.br
+.RI "Constructor\&. "
+.ti -1c
+.RI "\fBthread_safety_t\fP (const \fBthread_safety_t\fP &)=delete"
+.br
+.RI "Disable copy constructor\&. "
+.ti -1c
+.RI "\fBthread_safety_t\fP \fBoperator=\fP (const \fBthread_safety_t\fP &)=delete"
+.br
+.RI "Disable assignment operator\&. "
+.ti -1c
+.RI "\fBthread_safety_t\fP (\fBthread_safety_t\fP &&other)"
+.br
+.RI "Move constructor\&. "
+.ti -1c
+.RI "bool \fBcan_write\fP ()"
+.br
+.RI "can_write Indicates whether a thread can proceed to writing "
+.ti -1c
+.RI "void \fBenter_as_writer\fP ()"
+.br
+.RI "enter_as_writer Lock resources as writer "
+.ti -1c
+.RI "void \fBexit_as_writer\fP ()"
+.br
+.RI "exit_as_writer Unlock resources as writer "
+.ti -1c
+.RI "bool \fBcan_read\fP ()"
+.br
+.RI "can_read Indicates whether a thread can proceed to reading "
+.ti -1c
+.RI "void \fBenter_as_reader\fP ()"
+.br
+.RI "enter_as_reader Lock resources as readed "
+.ti -1c
+.RI "void \fBexit_as_reader\fP ()"
+.br
+.RI "exit_as_reader Unlock resources as readed "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBm_writers_counter\fP"
+.br
+.RI "m_writers_counter Total number of writes inside the critical section "
+.ti -1c
+.RI "size_t \fBm_readers_counter\fP"
+.br
+.RI "m_readers_counter Total number of writes inside the critical section "
+.ti -1c
+.RI "std::mutex \fBm_readers\fP"
+.br
+.RI "m_readers Mutex for readers "
+.ti -1c
+.RI "std::mutex \fBm_writers\fP"
+.br
+.RI "m_readers Mutex for readers "
+.ti -1c
+.RI "std::condition_variable \fBm_cv\fP"
+.br
+.RI "m_cv Condition variable for reading and writing "
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "void \fBswap\fP (\fBthread_safety_t\fP &first, \fBthread_safety_t\fP &second)"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "bool thread_safety_t::can_read ()\fC [inline]\fP"
+
+.PP
+can_read Indicates whether a thread can proceed to reading 
+.PP
+\fBReturns\fP
+.RS 4
+True no other writers or readers are using the cache 
+.RE
+.PP
+
+.SS "bool thread_safety_t::can_write ()\fC [inline]\fP"
+
+.PP
+can_write Indicates whether a thread can proceed to writing 
+.PP
+\fBReturns\fP
+.RS 4
+True no other writers or readers are using the cache 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for xm_assessment from the source code\&.

@@ -1,0 +1,91 @@
+\hypertarget{structthread__safety__t}{}\section{thread\+\_\+safety\+\_\+t Struct Reference}
+\label{structthread__safety__t}\index{thread\_safety\_t@{thread\_safety\_t}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structthread__safety__t_affe6e40500b283b09da658ec7155569b}\label{structthread__safety__t_affe6e40500b283b09da658ec7155569b}} 
+\mbox{\hyperlink{structthread__safety__t_affe6e40500b283b09da658ec7155569b}{thread\+\_\+safety\+\_\+t}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structthread__safety__t_a30ce2b5978bc536597d70b39b7599079}\label{structthread__safety__t_a30ce2b5978bc536597d70b39b7599079}} 
+\mbox{\hyperlink{structthread__safety__t_a30ce2b5978bc536597d70b39b7599079}{thread\+\_\+safety\+\_\+t}} (const \mbox{\hyperlink{structthread__safety__t}{thread\+\_\+safety\+\_\+t}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Disable copy constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structthread__safety__t_aa5d76d10d30be6006b6a041864ee8226}\label{structthread__safety__t_aa5d76d10d30be6006b6a041864ee8226}} 
+\mbox{\hyperlink{structthread__safety__t}{thread\+\_\+safety\+\_\+t}} \mbox{\hyperlink{structthread__safety__t_aa5d76d10d30be6006b6a041864ee8226}{operator=}} (const \mbox{\hyperlink{structthread__safety__t}{thread\+\_\+safety\+\_\+t}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Disable assignment operator. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structthread__safety__t_ad717eec7938355aec034f1276a099cde}\label{structthread__safety__t_ad717eec7938355aec034f1276a099cde}} 
+\mbox{\hyperlink{structthread__safety__t_ad717eec7938355aec034f1276a099cde}{thread\+\_\+safety\+\_\+t}} (\mbox{\hyperlink{structthread__safety__t}{thread\+\_\+safety\+\_\+t}} \&\&other)
+\begin{DoxyCompactList}\small\item\em Move constructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structthread__safety__t_ae6e20ce43a82ebd21e326bfe2d18f8bf}{can\+\_\+write}} ()
+\begin{DoxyCompactList}\small\item\em can\+\_\+write Indicates whether a thread can proceed to writing \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structthread__safety__t_a283843684229e0d3460fa1830f383ee5}\label{structthread__safety__t_a283843684229e0d3460fa1830f383ee5}} 
+void \mbox{\hyperlink{structthread__safety__t_a283843684229e0d3460fa1830f383ee5}{enter\+\_\+as\+\_\+writer}} ()
+\begin{DoxyCompactList}\small\item\em enter\+\_\+as\+\_\+writer Lock resources as writer \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structthread__safety__t_a0b507f42c37d84d65519fb94a3d4af7a}\label{structthread__safety__t_a0b507f42c37d84d65519fb94a3d4af7a}} 
+void \mbox{\hyperlink{structthread__safety__t_a0b507f42c37d84d65519fb94a3d4af7a}{exit\+\_\+as\+\_\+writer}} ()
+\begin{DoxyCompactList}\small\item\em exit\+\_\+as\+\_\+writer Unlock resources as writer \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structthread__safety__t_abf2d3b518c725fb1997f7d05ab37c6fb}{can\+\_\+read}} ()
+\begin{DoxyCompactList}\small\item\em can\+\_\+read Indicates whether a thread can proceed to reading \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structthread__safety__t_ac5a72d995157543333b4ae3b1e58be83}\label{structthread__safety__t_ac5a72d995157543333b4ae3b1e58be83}} 
+void \mbox{\hyperlink{structthread__safety__t_ac5a72d995157543333b4ae3b1e58be83}{enter\+\_\+as\+\_\+reader}} ()
+\begin{DoxyCompactList}\small\item\em enter\+\_\+as\+\_\+reader Lock resources as readed \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structthread__safety__t_ad6f7aeec450ce4b7c36882a5e0c2fa5d}\label{structthread__safety__t_ad6f7aeec450ce4b7c36882a5e0c2fa5d}} 
+void \mbox{\hyperlink{structthread__safety__t_ad6f7aeec450ce4b7c36882a5e0c2fa5d}{exit\+\_\+as\+\_\+reader}} ()
+\begin{DoxyCompactList}\small\item\em exit\+\_\+as\+\_\+reader Unlock resources as readed \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structthread__safety__t_a677aeea808312a3d8b1b0cc359e14776}\label{structthread__safety__t_a677aeea808312a3d8b1b0cc359e14776}} 
+size\+\_\+t \mbox{\hyperlink{structthread__safety__t_a677aeea808312a3d8b1b0cc359e14776}{m\+\_\+writers\+\_\+counter}}
+\begin{DoxyCompactList}\small\item\em m\+\_\+writers\+\_\+counter Total number of writes inside the critical section \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structthread__safety__t_a5e0bfc26f61f8bda0437fe3fed174422}\label{structthread__safety__t_a5e0bfc26f61f8bda0437fe3fed174422}} 
+size\+\_\+t \mbox{\hyperlink{structthread__safety__t_a5e0bfc26f61f8bda0437fe3fed174422}{m\+\_\+readers\+\_\+counter}}
+\begin{DoxyCompactList}\small\item\em m\+\_\+readers\+\_\+counter Total number of writes inside the critical section \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structthread__safety__t_a9977ce08d76081d55f504f0371477b4d}\label{structthread__safety__t_a9977ce08d76081d55f504f0371477b4d}} 
+std\+::mutex \mbox{\hyperlink{structthread__safety__t_a9977ce08d76081d55f504f0371477b4d}{m\+\_\+readers}}
+\begin{DoxyCompactList}\small\item\em m\+\_\+readers Mutex for readers \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structthread__safety__t_abad9ad9117a5de2cdc12c1589b0b2891}\label{structthread__safety__t_abad9ad9117a5de2cdc12c1589b0b2891}} 
+std\+::mutex \mbox{\hyperlink{structthread__safety__t_abad9ad9117a5de2cdc12c1589b0b2891}{m\+\_\+writers}}
+\begin{DoxyCompactList}\small\item\em m\+\_\+readers Mutex for readers \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structthread__safety__t_aae8e6b7efcf6cdf33bb37ef025c872c1}\label{structthread__safety__t_aae8e6b7efcf6cdf33bb37ef025c872c1}} 
+std\+::condition\+\_\+variable \mbox{\hyperlink{structthread__safety__t_aae8e6b7efcf6cdf33bb37ef025c872c1}{m\+\_\+cv}}
+\begin{DoxyCompactList}\small\item\em m\+\_\+cv Condition variable for reading and writing \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structthread__safety__t_ae492c1db158c3c7e1fbf4281dda04912}\label{structthread__safety__t_ae492c1db158c3c7e1fbf4281dda04912}} 
+void {\bfseries swap} (\mbox{\hyperlink{structthread__safety__t}{thread\+\_\+safety\+\_\+t}} \&first, \mbox{\hyperlink{structthread__safety__t}{thread\+\_\+safety\+\_\+t}} \&second)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structthread__safety__t_abf2d3b518c725fb1997f7d05ab37c6fb}\label{structthread__safety__t_abf2d3b518c725fb1997f7d05ab37c6fb}} 
+\index{thread\_safety\_t@{thread\_safety\_t}!can\_read@{can\_read}}
+\index{can\_read@{can\_read}!thread\_safety\_t@{thread\_safety\_t}}
+\subsubsection{\texorpdfstring{can\_read()}{can\_read()}}
+{\footnotesize\ttfamily bool thread\+\_\+safety\+\_\+t\+::can\+\_\+read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+can\+\_\+read Indicates whether a thread can proceed to reading 
+
+\begin{DoxyReturn}{Returns}
+True no other writers or readers are using the cache 
+\end{DoxyReturn}
+\mbox{\Hypertarget{structthread__safety__t_ae6e20ce43a82ebd21e326bfe2d18f8bf}\label{structthread__safety__t_ae6e20ce43a82ebd21e326bfe2d18f8bf}} 
+\index{thread\_safety\_t@{thread\_safety\_t}!can\_write@{can\_write}}
+\index{can\_write@{can\_write}!thread\_safety\_t@{thread\_safety\_t}}
+\subsubsection{\texorpdfstring{can\_write()}{can\_write()}}
+{\footnotesize\ttfamily bool thread\+\_\+safety\+\_\+t\+::can\+\_\+write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+can\+\_\+write Indicates whether a thread can proceed to writing 
+
+\begin{DoxyReturn}{Returns}
+True no other writers or readers are using the cache 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/thread\+\_\+safety.\+hpp\end{DoxyCompactItemize}

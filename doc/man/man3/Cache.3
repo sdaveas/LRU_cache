@@ -1,0 +1,162 @@
+.TH "Cache< Key, Value, HashFunction, KeyEqual, Allocator >" 3 "Sun Oct 6 2019" "xm_assessment" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Cache< Key, Value, HashFunction, KeyEqual, Allocator > \- The \fBCache\fP class This templated class consists a \fBCache\fP that functions at an LRU manner\&. The insertion and look up complexity is O(1)\&. An insertion implies the insertion to three data structures:  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <cache\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCache\fP (int max_size=default_max_size, bool enable_logs=default_log_level)"
+.br
+.RI "\fBCache\fP Constructor of the LRU cache\&. "
+.ti -1c
+.RI "\fBCache\fP (const \fBCache\fP &)=delete"
+.br
+.RI "Disable copy constructor\&. "
+.ti -1c
+.RI "\fBCache\fP & \fBoperator=\fP (const \fBCache\fP &)=delete"
+.br
+.RI "Disable copy assignment operator\&. "
+.ti -1c
+.RI "\fBCache\fP (\fBCache\fP &&other)"
+.br
+.RI "Move constructor\&. "
+.ti -1c
+.RI "size_t \fBsize\fP ()"
+.br
+.RI "size Returns the amount of inserted key-value pairs "
+.ti -1c
+.RI "std::pair< Value, bool > \fBfind\fP (const Key &key, int sleeptime=0)"
+.br
+.RI "find Finds the value of corresponding key, if exists\&. "
+.ti -1c
+.RI "size_t \fBinsert\fP (Key key, Value value, int sleeptime=0)"
+.br
+.RI "insert Inserts a key-value pair in the cache\&. If max capacity is reached, the oldest key-value pair is evicted\&. "
+.ti -1c
+.RI "void \fBprint\fP (const std::function< void(Key k)> &print_key=[](Key k){std::cout<< k;}, const std::function< void(Value v)> &print_value=[](Value v){std::cout<< v;})"
+.br
+.RI "print Prints the contents of the cache (for debbugging purposes) "
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "void \fBswap\fP (\fBCache\fP &first, \fBCache\fP &second)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class Key, class Value, class HashFunction = std::hash<Key>, class KeyEqual = std::equal_to<Key>, class Allocator = std::allocator<std::pair<const Key, Value>>>
+.br
+class Cache< Key, Value, HashFunction, KeyEqual, Allocator >"
+The \fBCache\fP class This templated class consists a \fBCache\fP that functions at an LRU manner\&. The insertion and look up complexity is O(1)\&. An insertion implies the insertion to three data structures: 
+
+
+.IP "1." 4
+hashmap from Keys to Values
+.IP "2." 4
+hashmap from Keys to insertion rounds
+.IP "3." 4
+hashmap from insertion round to Keys\&. Key features:
+.PP
+.IP "1." 4
+Keys and Values can be of arbitrary type\&.
+.IP "2." 4
+User can provide a maximum capacity\&.
+.IP "3." 4
+Multithreaded functionality is provided\&. 
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class Key , class Value , class HashFunction  = std::hash<Key>, class KeyEqual  = std::equal_to<Key>, class Allocator  = std::allocator<std::pair<const Key, Value>>> \fBCache\fP< Key, Value, HashFunction, KeyEqual, Allocator >::\fBCache\fP (int max_size = \fCdefault_max_size\fP, bool enable_logs = \fCdefault_log_level\fP)\fC [inline]\fP"
+
+.PP
+\fBCache\fP Constructor of the LRU cache\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImax_size\fP The maximum capacity of the cache 
+.br
+\fIenable_logs\fP Enables/disables verbosity 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class Key , class Value , class HashFunction  = std::hash<Key>, class KeyEqual  = std::equal_to<Key>, class Allocator  = std::allocator<std::pair<const Key, Value>>> std::pair<Value, bool> \fBCache\fP< Key, Value, HashFunction, KeyEqual, Allocator >::find (const Key & key, int sleeptime = \fC0\fP)\fC [inline]\fP"
+
+.PP
+find Finds the value of corresponding key, if exists\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The Key 
+.br
+\fIsleeptime\fP Optiion to cause delays (for testing multithreading functionalities) 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns an std::pair<Value, bool>\&. If the
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP exists, the corresponding value is returned and the bool is set to true If the
+.br
+\fIkey\fP does not exist, a default-constructed Value object is returned and bool is set to false 
+.RE
+.PP
+
+.SS "template<class Key , class Value , class HashFunction  = std::hash<Key>, class KeyEqual  = std::equal_to<Key>, class Allocator  = std::allocator<std::pair<const Key, Value>>> size_t \fBCache\fP< Key, Value, HashFunction, KeyEqual, Allocator >::insert (Key key, Value value, int sleeptime = \fC0\fP)\fC [inline]\fP"
+
+.PP
+insert Inserts a key-value pair in the cache\&. If max capacity is reached, the oldest key-value pair is evicted\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The Key 
+.br
+\fIvalue\fP The Value 
+.br
+\fIsleeptime\fP Optiion to cause delays (for testing multithreading functionalities) 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 if
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP already existed, 1 if
+.br
+\fIkey\fP is newly added 
+.RE
+.PP
+
+.SS "template<class Key , class Value , class HashFunction  = std::hash<Key>, class KeyEqual  = std::equal_to<Key>, class Allocator  = std::allocator<std::pair<const Key, Value>>> size_t \fBCache\fP< Key, Value, HashFunction, KeyEqual, Allocator >::size ()\fC [inline]\fP"
+
+.PP
+size Returns the amount of inserted key-value pairs 
+.PP
+\fBReturns\fP
+.RS 4
+The amount of inserted key-value pairs 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for xm_assessment from the source code\&.
