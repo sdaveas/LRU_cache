@@ -2,6 +2,7 @@
 Template LRU_cache implementation
 
 ## Repository map
+```
 ├── build                           // The directory the executables are located
 ├── compile_and_run_main.sh         // Script to compile and run main test scenario
 ├── compile_and_run_tests.sh        // Script to compile and run the unit tests
@@ -16,8 +17,9 @@ Template LRU_cache implementation
 │   ├── main.cpp                    // Driver application source file that demonstrates described use case
 │   └── thread_safety.hpp           // Helper class for multi-threaded access source file
 └── tests
-    ├── catch                       // Folder for Catch third party library
-    └── tests.cpp                   // Unit tests source file.
+├── catch                           // Folder for Catch third party library
+└── tests.cpp                       // Unit tests source file.
+```
 
 ## Functionality
 The `LUR cache` consist of three Hashmaps;
