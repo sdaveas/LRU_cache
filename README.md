@@ -17,8 +17,8 @@ Template LRU_cache implementation
 │   ├── main.cpp                    // Driver application source file that demonstrates described use case
 │   └── thread_safety.hpp           // Helper class for multi-threaded access source file
 └── tests
-├── catch                           // Folder for Catch third party library
-└── tests.cpp                       // Unit tests source file.
+    ├── catch                       // Folder for Catch third party library
+    └── tests.cpp                   // Unit tests source file.
 ```
 
 ## Functionality
