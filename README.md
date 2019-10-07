@@ -18,7 +18,7 @@ Template LRU_cache implementation
 │   └── thread_safety.hpp           // Helper class for multi-threaded access source file
 └── tests
     ├── catch                       // Folder for Catch third party library
-    └── tests.cpp                   // Unit tests source file.
+    └── tests.cpp                   // Unit tests source file
 ```
 
 ## Functionality
