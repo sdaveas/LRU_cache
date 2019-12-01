@@ -74,7 +74,6 @@ public:
         swap(first.m_oldest_insertion, second.m_oldest_insertion);
         swap(first.m_max_size, second.m_max_size);
         swap(first.m_enable_logs, second.m_enable_logs);
-        swap(first.m_thread_safety, second.m_thread_safety);
     }
 
     /// \brief size Returns the amount of inserted key-value pairs
@@ -95,18 +94,16 @@ public:
     ///                     false
     std::pair<Value, bool> find(const Key& key, int sleeptime = 0)
     {
-        m_thread_safety.enter_as_reader();
+        std::lock_guard<std::mutex> lock(m_mutex);
         if (sleeptime) {
             std::this_thread::sleep_for(std::chrono::seconds(sleeptime));
         }
         auto item = m_cache.find(key);
         if (item == m_cache.end()) {
-            m_thread_safety.exit_as_reader();
             return std::make_pair(Value{}, false);
         }
         auto previously_inserted_round = inserted_round(key);
 
-        m_thread_safety.exit_as_reader();
         return std::make_pair(item->second, true);
     }
 
@@ -118,7 +115,7 @@ public:
     /// \return             0 if  Key already existed, 1 if  Key is newly added
     size_t insert(Key key, Value value, int sleeptime = 0)
     {
-        m_thread_safety.enter_as_writer();
+        std::lock_guard<std::mutex> lock(m_mutex);
 
         if (sleeptime > 0) {
             std::this_thread::sleep_for(std::chrono::seconds(sleeptime));
@@ -137,7 +134,6 @@ public:
             }
 
             insert_new_record(key, value);
-            m_thread_safety.exit_as_writer();
             return 1;
         }
 
@@ -145,7 +141,6 @@ public:
         if (previously_inserted_round != m_round_counter) {
             update_inserted_round(key, previously_inserted_round);
         }
-        m_thread_safety.exit_as_writer();
         return 0;
     }
 
@@ -261,7 +256,7 @@ private:
     size_t m_max_size;
     /// \brief m_enable_logs                Enable/disable verbocity
     bool m_enable_logs;
-    /// \brief thread_safety_t              Helper class to handle reads/writes of multiple threads
-    thread_safety_t m_thread_safety;
+    /// \brief m_mutex                      Mutex to handle reads/writes of multiple threads
+    std::mutex m_mutex;
 
 };
